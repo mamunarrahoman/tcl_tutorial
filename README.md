@@ -1,4 +1,4 @@
-# Tcl Tour — Major Applications of Tcl:
+# Tcl Tour — Major Applications of Tcl
 
 A single runnable project that walks through the areas Tcl is actually used
 for in practice, not just syntax trivia. Each numbered file is a self-contained,
