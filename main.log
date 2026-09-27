@@ -1,0 +1,237 @@
+
+Tcl Tour -- major applications of Tcl
+   1) 01_basics.tcl            Core language: vars, control flow, procs
+   2) 02_data_structures.tcl   Lists, arrays, dicts
+   3) 03_string_regex.tcl      String processing & regular expressions
+   4) 04_file_io.tcl           File I/O & log/CSV processing
+   5) 05_error_handling.tcl    catch / try-on / custom errors
+   6) 06_oop_tcloo.tcl         Object orientation with TclOO
+   7) 07_namespaces.tcl        Namespaces & ensemble commands
+   8) 08_networking.tcl        Sockets & the event loop
+   9) 09_eda_scripting.tcl     EDA/VLSI tool scripting (SDC-style)
+  10) 10_gui_tk.tcl            Tk GUI (needs a display -- not auto-run)
+   a) run all (1-9, skips GUI)
+   q) quit
+
+choice: 
+-------------------------------------------------------
+ Module 1: Core language: vars, control flow, procs
+-------------------------------------------------------
+
+Variables & Expressions
+Enter Your Name : 
+Hello, Mamunar Rahoman! count=3, count*2=6
+Control flow: if / for / while / switch
+1 is odd
+2 is even
+3 is odd
+4 is even
+5 is odd
+1
+2
+3
+4
+5
+while loop i=0
+while loop i=1
+while loop i=2
+A -> pass with distinction
+B -> pass with distinction
+C -> pass
+F -> fail
+Procedures, default args, variadic args
+Hello, World!
+Hi, World!
+sum 1 2 3 4 = 10
+Scoping: global vs local
+counter after 3 bumps = 3
+Recursion
+5! = 120
+
+-------------------------------------------------------
+ Module 2: Lists, arrays, dicts
+-------------------------------------------------------
+
+Lists
+list: apple banana cherry date
+length: 4
+element 1: banana
+after lappend: apple banana cherry date elderberry
+sorted: apple banana cherry date elderberry
+filtered (contains 'e'): apple cherry date elderberry
+nested: {1 2 3} {4 5 6}, first row: 1 2 3
+Arrays (classic Tcl associative arrays)
+person(field) = VLSI
+person(goal) = PhD
+person(name) = Mamunar
+Dicts (modern key-value structure, ordered)
+device dict: name inv1 type INV drive x2 delay_ps 11.8
+  name -> inv1
+  type -> INV
+  drive -> x2
+  delay_ps -> 11.8
+has key 'type'? 1
+List of dicts -- a common 'table' pattern
+cells: {name AND2_X1 area 1.2 delay 15} {name OR2_X1 area 1.1 delay 14} {name INV_X1 area 0.6 delay 8}
+total area = 2.9
+cells sorted by delay (desc): {AND2_X1 15} {OR2_X1 14} {INV_X1 8}
+
+-------------------------------------------------------
+ Module 3: String processing & regular expressions
+-------------------------------------------------------
+
+Basic string ops
+trimmed: 'Hello, Tcl World!'
+upper:   HELLO, TCL WORLD!  
+length: 21
+range 2-6: Hello
+replace 'Tcl' with 'TCL':   Hello, TCL World!  
+Splitting & joining
+fields: cell area delay power
+rejoined with ' | ': cell | area | delay | power
+Regular expressions -- regexp
+parsed violation:
+  cell   = INV_X2
+  rule   = max_transition
+  pin    = A
+  actual = 0.42ns
+  limit  = 0.35ns
+Regular expressions -- regexp -all
+all delay tokens: 3.2ns 1.1ns 5.6ns
+Regular expressions -- regsub (substitution)
+windows path -> unix-style: C:/designs/top/netlist.v
+normalized spacing: 'This has irregular spacing'
+Format & scan (printf/scanf style)
+INV_X1        0.612     4
+scanned -> name=AND2 area=1.2 fanout=3
+
+-------------------------------------------------------
+ Module 4: File I/O & log/CSV processing
+-------------------------------------------------------
+
+Writing a file
+wrote 121 bytes to ./data/sample.log
+Reading a file line by line
+  1: INFO: run started
+  2: TIMING: path1 slack=0.45
+  3: TIMING: path2 slack=-0.12
+  4: WARN: unconnected pin U3/A
+  5: TIMING: path3 slack=0.02
+Filtering + extracting data (grep + parse in one pass)
+negative-slack paths: {path2 -0.12}
+Writing structured output (CSV)
+Reading the CSV back into a list of dicts
+  name INV_X1 area 0.6 delay 8
+  name AND2_X1 area 1.2 delay 15
+  name OR2_X1 area 1.1 delay 14
+Cleanup
+removed temp files under ./data
+
+-------------------------------------------------------
+ Module 5: catch / try-on / custom errors
+-------------------------------------------------------
+
+Basic catch
+caught error: divide by zero
+try / on / finally (Tcl 8.6+)
+  (divide 10 2 attempted)
+10/2 = 5.0
+  (divide 10 0 attempted)
+10/0 = Inf
+Custom error codes
+area OK: 1.2
+design rule violation: area cannot be negative: -0.5 (code=DESIGN NEGATIVE_AREA)
+Validating input before doing work
+safeSqrt(16) = 4.0
+safeSqrt(-4) failed: cannot take sqrt of negative number: -4
+safeSqrt(abc) failed: not a number: 'abc'
+
+-------------------------------------------------------
+ Module 6: Object orientation with TclOO
+-------------------------------------------------------
+
+A basic class
+INV_X1     area=0.60 delay=8.0ps
+NAND2_X1   area=0.90 delay=11.5ps
+Inheritance
+DFF_X1     area=2.40 delay=25.0ps clk=CK
+Polymorphism over a list of objects
+INV_X1     area=0.60 delay=8.0ps
+NAND2_X1   area=0.90 delay=11.5ps
+DFF_X1     area=2.40 delay=25.0ps clk=CK
+total area = 3.9
+Destroying objects
+inv object destroyed successfully (call now fails as expected)
+
+-------------------------------------------------------
+ Module 7: Namespaces & ensemble commands
+-------------------------------------------------------
+
+Calling namespaced procs with full paths
+arrival=650.0ps required=800.0ps slack=150.0ps
+dynamic power estimate: 0.000192 W
+Importing into the current namespace
+arrival=900.0ps required=800.0ps slack=-100.0ps
+Namespace-scoped state is isolated
+sta::clockPeriod   = 800.0
+changing it only affects the sta namespace, not globals
+Ensemble command (a mini CLI dispatcher)
+tool run: --flow synth
+tool version: 1.0.0
+
+-------------------------------------------------------
+ Module 8: Sockets & the event loop
+-------------------------------------------------------
+
+Starting a TCP echo server on localhost
+server listening on port 33457
+Connecting a client and exchanging one message
+  server: client connected from 127.0.0.1:43245
+  server: got 'hello from the client', echoing back
+  client: received 'ECHO: hello from the client'
+final received: {ECHO: hello from the client}
+
+(A real Tcl network app would keep the event loop running with
+ 'vwait forever' instead of exiting after one message.)
+
+-------------------------------------------------------
+ Module 9: EDA/VLSI tool scripting (SDC-style)
+-------------------------------------------------------
+
+Sourcing constraints (SDC-style Tcl commands)
+  (constraint) create_clock -name core_clk -period 900
+  (constraint) set_max_delay 950 -from in2
+Timing analysis
+  in1    -> out1    arrival=  550ps  slack= 350.0ps  [MET]
+  in2    -> out1    arrival=  720ps  slack= 180.0ps  [MET]
+  in1    -> out2    arrival=  300ps  slack= 600.0ps  [MET]
+  in2    -> out2    arrival= 1050ps  slack=-150.0ps  [VIOLATED]
+  ---
+  worst path: in2 -> out2, slack=-150.0ps
+Sign-off decision (like a real flow's exit check)
+TIMING NOT MET -- worst negative slack (WNS) = -150ps
+-> would normally trigger another optimization/ECO pass
+Why this matters
+This is the exact shape of a PrimeTime/OpenSTA sign-off script:
+  1. source design + constraints (Tcl procs standing in for real commands)
+  2. walk timing paths and compute slack
+  3. branch the flow based on the numeric result
+Swap the toy arrays for a real netlist/SDC reader and the control
+flow above is unchanged -- that's why Tcl has stayed the EDA
+industry's scripting layer for decades.
+
+Tcl Tour -- major applications of Tcl
+   1) 01_basics.tcl            Core language: vars, control flow, procs
+   2) 02_data_structures.tcl   Lists, arrays, dicts
+   3) 03_string_regex.tcl      String processing & regular expressions
+   4) 04_file_io.tcl           File I/O & log/CSV processing
+   5) 05_error_handling.tcl    catch / try-on / custom errors
+   6) 06_oop_tcloo.tcl         Object orientation with TclOO
+   7) 07_namespaces.tcl        Namespaces & ensemble commands
+   8) 08_networking.tcl        Sockets & the event loop
+   9) 09_eda_scripting.tcl     EDA/VLSI tool scripting (SDC-style)
+  10) 10_gui_tk.tcl            Tk GUI (needs a display -- not auto-run)
+   a) run all (1-9, skips GUI)
+   q) quit
+
+choice: bye

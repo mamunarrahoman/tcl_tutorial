@@ -1,1 +1,42 @@
+# Tcl Tour — Major Applications of Tcl
+
+A single runnable project that walks through the areas Tcl is actually used
+for in practice, not just syntax trivia. Each numbered file is a self-contained,
+runnable demo; `main.tcl` is a menu that runs any or all of them.
+
+## Why these modules
+_____________________________________________________________________________________
+| # | File                   | Application area                                     |
+|---|------------------------|------------------------------------------------------|
+| 1 | 01_basics.tcl          | Core language: vars, control flow, procs             |
+| 2 | 02_data_structures.tcl | Lists, arrays, dicts                                 |
+| 3 | 03_string_regex.tcl    | Text/string processing — Tcl's original niche        |
+| 4 | 04_file_io.tcl         | Scripting/automation: file & log processing          |
+| 5 | 05_error_handling.tcl  | catch / try-on, custom errors, robust scripts        |
+| 6 | 06_oop_tcloo.tcl       | Object orientation with the built-in TclOO package   |
+| 7 | 07_namespaces.tcl      | Namespaces & reusable "packages"                     |
+| 8 | 08_networking.tcl      | Sockets — client/server, Tcl's classic event loop    |
+| 9 | 09_eda_scripting.tcl   | EDA/VLSI tool scripting (SDC-style constraints)      |
+|10 | 10_gui_tk.tcl          | GUI with Tk (needs a display — code only, not run)   |
+|___________________________________________________________________________________|
+
+## Why Tcl still matters
+
+Tcl is used as an embedded command/extension language and it is the de-facto
+scripting layer of the EDA/VLSI industry — Synopsys Design Compiler and
+PrimeTime, Cadence Innovus, and the open-source OpenROAD/OpenSTA flow are
+all driven mostly by Tcl scripts.
+
+## Running it
+
+```bash
+# Requires: tclsh (Tcl 8.6+). Optionally tcllib for a couple of extras.
+tclsh main.tcl          # interactive menu
+tclsh main.tcl all      # run every demo end-to-end, non-interactively
+tclsh 09_eda_scripting.tcl   # or run any single module directly
+```
+
+No external packages are required except `tcllib`'s `sqlite3`-style demos
+are skipped gracefully if it isn't installed — every module checks and
+degrades cleanly instead of erroring out.
 # tcl_tutorial
