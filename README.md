@@ -5,21 +5,18 @@ for in practice, not just syntax trivia. Each numbered file is a self-contained,
 runnable demo; `main.tcl` is a menu that runs any or all of them.
 
 ## Why these modules
-_____________________________________________________________________________________
-| # | File                   | Application area                                     |
-|---|------------------------|------------------------------------------------------|
-| 1 | 01_basics.tcl          | Core language: vars, control flow, procs             |
-| 2 | 02_data_structures.tcl | Lists, arrays, dicts                                 |
-| 3 | 03_string_regex.tcl    | Text/string processing — Tcl's original niche        |
-| 4 | 04_file_io.tcl         | Scripting/automation: file & log processing          |
-| 5 | 05_error_handling.tcl  | catch / try-on, custom errors, robust scripts        |
-| 6 | 06_oop_tcloo.tcl       | Object orientation with the built-in TclOO package   |
-| 7 | 07_namespaces.tcl      | Namespaces & reusable "packages"                     |
-| 8 | 08_networking.tcl      | Sockets — client/server, Tcl's classic event loop    |
-| 9 | 09_eda_scripting.tcl   | EDA/VLSI tool scripting (SDC-style constraints)      |
-|10 | 10_gui_tk.tcl          | GUI with Tk (needs a display — code only, not run)   |
-|___________________________________________________________________________________|
-
+| # | File | Application area |
+|---:|---|---|
+| 1 | `01_basics.tcl` | Core language: variables, control flow, procedures |
+| 2 | `02_data_structures.tcl` | Lists, arrays, dictionaries |
+| 3 | `03_string_regex.tcl` | Text/string processing — Tcl's original niche |
+| 4 | `04_file_io.tcl` | File and log processing |
+| 5 | `05_error_handling.tcl` | `catch`, `try`, custom errors, robust scripts |
+| 6 | `06_oop_tcloo.tcl` | Object orientation with the built-in TclOO package |
+| 7 | `07_namespaces.tcl` | Namespaces and reusable packages |
+| 8 | `08_networking.tcl` | Sockets — client/server and Tcl's event loop |
+| 9 | `09_eda_scripting.tcl` | EDA/VLSI tool scripting and SDC-style constraints |
+| 10 | `10_gui_tk.tcl` | GUI with Tk — requires a display |
 ## Why Tcl still matters
 
 Tcl is used as an embedded command/extension language and it is the de-facto
