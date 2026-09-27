@@ -9,9 +9,9 @@ proc section {title} {
 section "Variables & Expressions"
 
 # Input method from consol
-puts "Enter Your Name : "
-set name [gets stdin]
-#set name  "Mamunar"
+#puts "Enter Your Name : "
+#set name [gets stdin]
+set name  "Mamunar Rahoman"
 set count 3
 puts "Hello, $name! count=$count, count*2=[expr {$count * 2}]"
 
