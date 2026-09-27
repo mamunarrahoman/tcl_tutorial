@@ -34,6 +34,11 @@ tclsh main.tcl          # interactive menu
 tclsh main.tcl all      # run every demo end-to-end, non-interactively
 tclsh 09_eda_scripting.tcl   # or run any single module directly
 ```
+## A simple Area Calculator using TCL
+```bash
+tclsh 1010_gui_tk.tcl # To run the Graphical Uswer Interface.
+```
+
 
 No external packages are required except `tcllib`'s `sqlite3`-style demos
 are skipped gracefully if it isn't installed — every module checks and
