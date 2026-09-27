@@ -38,7 +38,7 @@ tclsh 09_eda_scripting.tcl   # or run any single module directly
 ```bash
 tclsh 10_gui_tk.tcl # To run the Graphical Uswer Interface.
 ```
-![Image description](asset/gui_cal.png)
+![Image description](asset/cal_gui.png)
 
 No external packages are required except `tcllib`'s `sqlite3`-style demos
 are skipped gracefully if it isn't installed — every module checks and
