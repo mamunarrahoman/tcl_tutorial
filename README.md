@@ -2,10 +2,12 @@
 
 A single runnable project that walks through the areas Tcl is actually used
 for in practice, not just syntax trivia. Each numbered file is a self-contained,
-runnable demo; `main.tcl` is a menu that runs any or all of them.
+runnable demo; `main.tcl` is a menu that runs any or all of them. This project will 
+also serve as a quick reference for things I might forget when automating a live project, 
+allowing me to easily refresh my memory when needed.
 
 ## Why these modules
-| # | File | Application area |
+| SL | File | Application area |
 |---:|---|---|
 | 1 | `01_basics.tcl` | Core language: variables, control flow, procedures |
 | 2 | `02_data_structures.tcl` | Lists, arrays, dictionaries |
